@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto con Código QR</title>
+    <!-- Incluir QRCode.js desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .qr-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Formulario de Contacto</h2>
+    <!-- Formulario de contacto -->
+    <input type="text" id="nombre" placeholder="Nombre Completo" required>
+    <input type="tel" id="telefono" placeholder="Teléfono" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="empresa" placeholder="Empresa">
+    <input type="text" id="direccion" placeholder="Dirección">
+    <button onclick="generarQRCode()">Generar Código QR</button>
+</div>
+
+<!-- Contenedor para el QR -->
+<div class="qr-container" id="qrCodeContainer"></div>
+
+<script>
+    // Función para generar el código QR en formato vCard
+    function generarQRCode() {
+        // Obtener datos del formulario
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value;
+        const email = document.getElementById('email').value;
+        const empresa = document.getElementById('empresa').value;
+        const direccion = document.getElementById('direccion').value;
+
+        // Formato vCard
+        const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:${nombre}
+ORG:${empresa}
+TEL:${telefono}
+EMAIL:${email}
+ADR:${direccion}
+END:VCARD`;
+
+        // Borrar QR anterior si existe
+        const qrContainer = document.getElementById('qrCodeContainer');
+        qrContainer.innerHTML = "";
+
+        // Crear nuevo QR
+        new QRCode(qrContainer, {
+            text: vCardData,
+            width: 200,
+            height: 200
+        });
+    }
+</script>
+
+</body>
+</html>

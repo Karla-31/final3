@@ -1,0 +1,58 @@
+{
+    "menu": [
+      {
+        "name": "Formulario con Aceeso a Base de datos",
+        "link": "Acceso-a-BD-main/index.html",
+        "icon": "home"
+      },
+      {
+        "name": "BancoReserva",
+        "link": "BancoReserva-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Codigo QR",
+        "link": "CODIGOQR-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Menu dinamico",
+        "link": "CREAR-MENU-DINAMIC-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Libreria para generar graficos",
+        "link": "libreria-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Formulario con múltiples páginas",
+        "link": "Multiples-Pagina-main/index.html",
+        "icon": "user"
+      },
+     
+      {
+        "name": "Página Web Personal en HTML",
+        "link": "pagina_personal2-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Validar Cedula",
+        "link": "Validar-Cedula-main/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "Servicio Web para validar la cédula",
+        "link": "servicioWeb/index.html",
+        "icon": "user"
+      },
+      {
+        "name": "102 Etiquetas HTML",
+        "link": "102_Etiquetas/index.html",
+        "icon": "user"
+      }
+      
+      
+    ]
+  }
+  

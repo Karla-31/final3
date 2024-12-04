@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Gráfico de Ventas Mensuales</title>
+    <!-- Incluir Chart.js desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        canvas {
+            max-width: 600px;
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Formulario de Ventas Mensuales</h2>
+    <!-- Formulario para ingresar datos de ventas -->
+    <input type="number" id="ventaEnero" placeholder="Ventas de Enero">
+    <input type="number" id="ventaFebrero" placeholder="Ventas de Febrero">
+    <input type="number" id="ventaMarzo" placeholder="Ventas de Marzo">
+    <input type="number" id="ventaAbril" placeholder="Ventas de Abril">
+    <input type="number" id="ventaMayo" placeholder="Ventas de Mayo">
+    <input type="number" id="ventaJunio" placeholder="Ventas de Junio">
+    <button onclick="generarGrafico()">Generar Gráfico</button>
+</div>
+
+<!-- Contenedor para el gráfico -->
+<canvas id="graficoVentas"></canvas>
+
+<script>
+    // Inicialización del gráfico con Chart.js
+    let miGrafico;
+    function generarGrafico() {
+        // Obtener valores de ventas desde el formulario
+        const ventas = [
+            parseFloat(document.getElementById('ventaEnero').value) || 0,
+            parseFloat(document.getElementById('ventaFebrero').value) || 0,
+            parseFloat(document.getElementById('ventaMarzo').value) || 0,
+            parseFloat(document.getElementById('ventaAbril').value) || 0,
+            parseFloat(document.getElementById('ventaMayo').value) || 0,
+            parseFloat(document.getElementById('ventaJunio').value) || 0,
+        ];
+
+        // Verificar si el gráfico ya existe, para destruirlo antes de crear uno nuevo
+        if (miGrafico) {
+            miGrafico.destroy();
+        }
+
+        // Configuración del gráfico
+        const ctx = document.getElementById('graficoVentas').getContext('2d');
+        miGrafico = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+                datasets: [{
+                    label: 'Ventas Mensuales',
+                    data: ventas,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+
